@@ -1,0 +1,8 @@
+# Project exclude paths
+/audit-service/target/
+/grpc-training-analytics-server/target/
+/grpc-training-enrichment-client/target/
+/notification-service/target/
+/training-checker-events-contract/target/
+/training-checker-grpc-contract/target/
+/training-rest/target/

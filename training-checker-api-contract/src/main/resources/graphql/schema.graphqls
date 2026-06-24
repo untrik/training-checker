@@ -1,0 +1,130 @@
+scalar DateTime
+scalar Date
+
+enum WorkoutType {
+  RUNNING
+  WALKING
+  CYCLING
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    birthDate: Date
+    weightKg: Int
+    workouts(filter: WorkoutFilter,page: Int = 0, size: Int = 20): WorkoutConnection!
+}
+
+type Metric{
+    id: ID!
+    workoutId: Int!
+    timestamp: DateTime!
+    heartRate: Int!
+    distanceKm: Float!
+    calories: Int!
+    pace: Int!
+}
+
+type Summary{
+    workoutId: Int!
+    duration: Int!
+    totalDistanceKm: Float!
+    avgHeartRate: Int!
+    maxHeartRate: Int!
+    totalCalories: Int!
+    avgPace: Float!
+}
+
+type Workout {
+    id: ID!
+    title: String!
+    startedAt: DateTime!
+    finishedAt: DateTime
+    type: WorkoutType!
+    user: User!
+    metrics: [Metric!]!
+    workoutSummary: Summary
+}
+
+type WorkoutConnection {
+    content: [Workout!]!
+    pageInfo: PageInfo!
+    totalElements: Int!
+}
+
+type PageInfo {
+    pageNumber: Int!
+    pageSize: Int!
+    totalPages: Int!
+    last: Boolean!
+
+}
+
+input CreateMetricInput{
+    timestamp: DateTime!
+    heartRate: Int!
+    distanceKm: Float!
+    calories: Int!
+    pace: Int!
+}
+
+#input CreateSummaryInput{
+#    duration: Int!
+#    totalDistanceKm: Float!
+#    avgHeartRate: Int!
+#    maxHeartRate: Int!
+#    totalCalories: Int!
+#    avgPace: Int!
+#}
+
+#input FinishWorkoutInput{
+#   metrics: [CreateMetricInput!]!
+#   summary: CreateSummaryInput!
+#}
+
+input CreateWorkoutInput{
+    type: WorkoutType!
+    title: String!
+}
+
+input UpdateUserInput{
+    username: String!
+    email: String!
+    birthDate: Date!
+    weightKg: Int!
+}
+
+input CreateUserInput{
+    username: String!
+    email: String!
+    birthDate: Date
+    weightKg: Int
+}
+
+input WorkoutFilter {
+    type: WorkoutType
+    totalDistanceKm: Float
+    totalCalories: Int
+    titleSearch: String
+}
+# TODO сделать отдельные запросы
+type Query {
+    user(id: ID!): User
+    workout(id: ID!): Workout
+    workouts(userId: ID!,filter: WorkoutFilter,page: Int = 0, size: Int = 20): WorkoutConnection!
+    metrics (workoutId: ID!):[Metric!]!
+    workoutSummary (workoutId: ID!): Summary
+}
+
+type Mutation {
+    createUser(input: CreateUserInput!): User!
+    updateUser(id: ID!, input: UpdateUserInput!): User!
+    deleteUser(id: ID!): Boolean!
+
+    createMetric(workoutId: ID! input: CreateMetricInput!): Metric!
+    startWorkout(userId: ID!, input: CreateWorkoutInput!): Workout!
+    finishWorkout(id: ID!): Workout!
+#    finishWorkout(id: ID!, input: FinishWorkoutInput!): Workout!
+    deleteWorkout(id: ID!): Boolean!
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        # Собрать всё в правильном порядке
+        .\mvnw install
+
+        # Запустить training-rest - контракт соберётся автоматически
+        .\mvnw spring-boot:run -pl training-rest -am
+
+        # Собрать только контракт (если менял только его)
+        .\mvnw install -pl training-checker-api-contract
+
+         # Запустить audit-service (RabbitMQ consumer)
+        .\mvnw spring-boot:run -pl audit-service -am
+
+                # Запустить gRPC Analytics Server (порт gRPC: 9090, HTTP: 8083)
+        .\mvnw spring-boot:run -pl grpc-training-analytics-server -am
+
+        # Запустить gRPC Enrichment Client (RabbitMQ → gRPC → RabbitMQ, HTTP: 8082)
+        .\mvnw spring-boot:run -pl grpc-training-enrichment-client -am
+
+         # Запустить сервис уведомлений
+        .\mvnw spring-boot:run -pl notification-service -DskipTests
+    -->
+
+    <groupId>edu.rutmiit</groupId>
+    <artifactId>training-checker-root</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>training-checker [root aggregator]</name>
+
+    <modules>
+        <!-- Контракты (библиотеки без main) — собираются первыми -->
+        <module>training-checker-api-contract</module>
+        <module>training-checker-events-contract</module>
+        <module>training-checker-grpc-contract</module>
+        <!-- Сервисы — зависят от контрактов -->
+        <module>training-rest</module>
+        <module>audit-service</module>
+        <module>grpc-training-analytics-server</module>
+        <module>grpc-training-enrichment-client</module>
+        <module>notification-service</module>
+    </modules>
+
+
+</project>
