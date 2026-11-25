@@ -1,0 +1,223 @@
+{
+  "realm": "training",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "accessTokenLifespan": 300,
+  "roles": {
+    "realm": [
+      {
+        "name": "service"
+      },
+      {
+        "name": "operator"
+      },
+      {
+        "name": "user"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "training-service-client",
+      "protocol": "openid-connect",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "training-service-secret",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "defaultClientScopes": [
+        "roles"
+      ],
+      "protocolMappers": [
+        {
+          "name": "api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "training-analytics",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "training-ops-client",
+      "protocol": "openid-connect",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "training-ops-secret",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "defaultClientScopes": [
+        "roles"
+      ],
+      "protocolMappers": [
+        {
+          "name": "api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "training-analytics",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "training-other-client",
+      "protocol": "openid-connect",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "training-other-secret",
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "defaultClientScopes": [
+        "roles"
+      ],
+      "protocolMappers": [
+        {
+          "name": "api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "other-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "training-bff",
+      "protocol": "openid-connect",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "training-bff-secret",
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": false,
+      "redirectUris": [
+        "http://localhost:8088/login/oauth2/code/keycloak",
+        "http://localhost:18088/login/oauth2/code/keycloak"
+      ],
+      "webOrigins": [
+        "http://localhost:8088",
+        "http://localhost:18088"
+      ],
+      "defaultClientScopes": ["basic", "roles", "profile", "email"],
+      "protocolMappers": [
+        {
+          "name": "api-training",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "training-rest",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "scopeMappings": [
+    {
+      "client": "training-service-client",
+      "roles": [
+        "service"
+      ]
+    },
+    {
+      "client": "training-ops-client",
+      "roles": [
+        "operator"
+      ]
+    },
+    {
+      "client": "training-bff",
+      "roles": ["user", "operator"]
+    },
+    {
+      "client": "training-other-client",
+      "roles": [
+        "service"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "user",
+      "firstName": "UserStudent",
+      "lastName": "Student",
+      "enabled": true,
+      "email": "student@example.test",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "user",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ]
+    },
+    {
+      "username": "operator",
+      "firstName": "OperatorStudent",
+      "lastName": "Student",
+      "enabled": true,
+      "email": "operator@example.test",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "operator",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "operator"
+      ]
+    },
+    {
+      "username": "service-account-training-service-client",
+      "enabled": true,
+      "serviceAccountClientId": "training-service-client",
+      "realmRoles": [
+        "service"
+      ]
+    },
+    {
+      "username": "service-account-training-ops-client",
+      "enabled": true,
+      "serviceAccountClientId": "training-ops-client",
+      "realmRoles": [
+        "operator"
+      ]
+    },
+    {
+      "username": "service-account-training-other-client",
+      "enabled": true,
+      "serviceAccountClientId": "training-other-client",
+      "realmRoles": [
+        "service"
+      ]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import edu.rutmiit.training_rest.service.MetricService;
 import edu.rutmiit.training_rest.service.WorkoutService;
 
 import java.util.List;
+import java.util.UUID;
 
 @DgsComponent
 public class WorkoutDataFetcher {
@@ -23,7 +24,7 @@ public class WorkoutDataFetcher {
 
     @DgsQuery
     public WorkoutResponse workout(@InputArgument String id) {
-        return workoutService.findById(Long.parseLong(id));
+        return workoutService.findById(UUID.fromString(id));
     }
 
     @DgsQuery
@@ -37,7 +38,7 @@ public class WorkoutDataFetcher {
         Double totalDistanceKm = filter != null ? filter.totalDistanceKm() : null;
         Integer totalCalories = filter != null ? filter.totalCalories() : null;
         String titleSearch = filter != null ? filter.titleSearch() : null;
-        PagedResponse<WorkoutResponse> paged = workoutService.getWorkoutsByUser(Long.parseLong(userId),
+        PagedResponse<WorkoutResponse> paged = workoutService.getWorkoutsByUser(UUID.fromString(userId),
                 type, totalDistanceKm, totalCalories,
                 titleSearch, pageNum, pageSize);
         return new WorkoutConnectionGql(
@@ -53,7 +54,7 @@ public class WorkoutDataFetcher {
                 input.type(),
                 input.title()
         );
-        return workoutService.startWorkout(Long.parseLong(userId), request);
+        return workoutService.startWorkout(UUID.fromString(userId), request);
     }
 
 //    @DgsMutation
@@ -85,13 +86,13 @@ public class WorkoutDataFetcher {
 @DgsMutation
 public WorkoutResponse finishWorkout(@InputArgument String id) {
 
-    List<CardioMetricResponse> metrics = metricService.getAllMetricsByWorkoutId(Long.parseLong(id));
-    metricService.createSummary(Long.parseLong(id), metrics);
-    return workoutService.finishWorkout(Long.parseLong(id));
+    List<CardioMetricResponse> metrics = metricService.getAllMetricsByWorkoutId(UUID.fromString(id));
+    metricService.createSummary(UUID.fromString(id), metrics);
+    return workoutService.finishWorkout(UUID.fromString(id));
 }
     @DgsMutation
     public Boolean deleteWorkout(@InputArgument String id) {
-        workoutService.deleteWorkouts(Long.parseLong(id));
+        workoutService.deleteWorkouts(UUID.fromString(id));
         return true;
     }
 }

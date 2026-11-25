@@ -13,6 +13,8 @@ import edu.rutmiit.training_rest.graphql.types.UpdateUserInputGql;
 import edu.rutmiit.training_rest.service.UserService;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.UUID;
+
 @DgsComponent
 public class UserDataFetcher {
     private final UserService userService;
@@ -23,7 +25,7 @@ public class UserDataFetcher {
 
     @DgsQuery
     public UserResponse user(@InputArgument String id){
-        return userService.findById(Long.parseLong(id));
+        return userService.findById(UUID.fromString(id));
     }
 
     @DgsMutation
@@ -44,12 +46,12 @@ public class UserDataFetcher {
                 input.birthDate(),
                 input.weightKg()
         );
-        return userService.updateUser(Long.parseLong(id),request);
+        return userService.updateUser(UUID.fromString(id),request);
     }
 
     @DgsMutation
     public boolean deleteUser(@InputArgument String id) {
-        userService.delete(Long.parseLong(id));
+        userService.delete(UUID.fromString(id));
         return true;
     }
 }

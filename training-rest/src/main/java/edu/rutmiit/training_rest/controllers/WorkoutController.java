@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class WorkoutController implements WorkoutApi {
@@ -27,12 +28,12 @@ public class WorkoutController implements WorkoutApi {
     }
 
     @Override
-    public EntityModel<WorkoutResponse> getWorkoutById(Long id) {
+    public EntityModel<WorkoutResponse> getWorkoutById(UUID id) {
         return workoutModelAssembler.toModel(workoutService.findById(id));
     }
 
     @Override
-    public ResponseEntity<EntityModel<WorkoutResponse>> createWorkout(Long id, WorkoutRequest request) {
+    public ResponseEntity<EntityModel<WorkoutResponse>> createWorkout(UUID id, WorkoutRequest request) {
         WorkoutResponse created = workoutService.startWorkout(id, request);
         EntityModel<WorkoutResponse> model = workoutModelAssembler.toModel(created);
         return ResponseEntity
@@ -41,7 +42,7 @@ public class WorkoutController implements WorkoutApi {
     }
 
     @Override
-    public  ResponseEntity<CardioMetricResponse>  createMetric(Long workoutId, CardioMetricRequest request){
+    public  ResponseEntity<CardioMetricResponse>  createMetric(UUID workoutId, CardioMetricRequest request){
       CardioMetricResponse created = metricService.createMetric(workoutId,request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -49,7 +50,7 @@ public class WorkoutController implements WorkoutApi {
     }
 
     @Override
-    public EntityModel<WorkoutResponse> finishWorkout(Long id /*FinishWorkoutRequest request */) {
+    public EntityModel<WorkoutResponse> finishWorkout(UUID id /*FinishWorkoutRequest request */) {
 //        metricService.createMetrics(id, request.metrics());
         List<CardioMetricResponse> metrics = metricService.getAllMetricsByWorkoutId(id);
         metricService.createSummary(id, metrics);
@@ -58,18 +59,18 @@ public class WorkoutController implements WorkoutApi {
     }
 
     @Override
-    public List<CardioMetricResponse> getMetricsByWorkoutId(Long id) {
+    public List<CardioMetricResponse> getMetricsByWorkoutId(UUID id) {
         return  metricService.getAllMetricsByWorkoutId(id);
     }
 
     @Override
-    public WorkoutSummaryResponse getSummaryByWorkoutId(Long id) {
+    public WorkoutSummaryResponse getSummaryByWorkoutId(UUID id) {
         return metricService.getSummaryByWorkoutId(id);
     }
 
 
     @Override
-    public EntityModel<WorkoutResponse> deleteWorkout(Long id) {
+    public EntityModel<WorkoutResponse> deleteWorkout(UUID id) {
         WorkoutResponse response = workoutService.findById(id);
         workoutService.deleteWorkouts(id);
         return workoutModelAssembler.toModel(response);

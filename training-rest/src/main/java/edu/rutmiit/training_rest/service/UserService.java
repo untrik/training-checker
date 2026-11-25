@@ -2,74 +2,81 @@ package edu.rutmiit.training_rest.service;
 
 import edu.rutmiit.training_checker_api_contract.dto.*;
 import edu.rutmiit.training_checker_api_contract.exception.ResourceNotFoundException;
-import edu.rutmiit.training_rest.graphql.types.UpdateUserInputGql;
-import edu.rutmiit.training_rest.storage.InMemoryStorage;
+import edu.rutmiit.training_rest.domain.UserEntity;
+import edu.rutmiit.training_rest.mapper.UserMapper;
+import edu.rutmiit.training_rest.repository.UserRepository;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
+@PreAuthorize("hasAnyRole('USER', 'OPERATOR')")
 public class UserService {
-    private final InMemoryStorage storage;
-    private final WorkoutService  workoutService;
+    private final WorkoutService workoutService;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserService(InMemoryStorage storage, @Lazy WorkoutService workoutService) {
-        this.storage = storage;
+    public UserService(@Lazy WorkoutService workoutService, UserRepository userRepository, UserMapper userMapper) {
         this.workoutService = workoutService;
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
-    public UserResponse findById(Long userId) {
-        return Optional.ofNullable(storage.users.get(userId))
+
+    @Transactional(readOnly = true)
+    public UserResponse findById(UUID userId) {
+        UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", userId));
+        return userMapper.toResponse(user);
     }
 
+    @Transactional
     public UserResponse createUser(UserRequest request) {
-        long id = storage.userSequence.incrementAndGet();
-        UserResponse response = UserResponse.builder()
-                .id(id)
-                .username(request.username())
-                .email(request.email())
-                .birthDate(request.birthDate())
-                .weightKg(request.weightKg())
-                .build();
-        storage.users.put(id, response);
-        return response;
-    }
-    public UserResponse updateUser(Long id, UpdateUserRequest request){
-        UserResponse existing = findById(id);
-        UserResponse updated = UserResponse.builder()
-                .id(id)
-                .username(request.username())
-                .email(request.email())
-                .birthDate(request.birthDate())
-                .weightKg(request.weightKg())
-                .build();
-        storage.users.put(id, updated);
-        return updated;
-    }
-    public UserResponse patchUser(Long id, PatchUserRequest request) {
-        UserResponse existing = findById(id);
-        UserResponse updated = UserResponse.builder()
-                .id(id)
-                .username(request.username() != null ? request.username() : existing.getUsername())
-                .email(request.email() != null ? request.username() : existing.getEmail())
-                .birthDate(request.birthDate() != null ? request.birthDate() : existing.getBirthDate())
-                .weightKg(request.weightKg() != null ? request.weightKg() : existing.getWeightKg())
-                .build();
-        storage.users.put(id, updated);
-        return updated;
+        if (userRepository.existsByEmail(request.email().trim())) {
+            throw new DataIntegrityViolationException("User with this email already exists");
+        }
+        UserEntity user = userRepository.save(
+                new UserEntity(UUID.randomUUID(), request.username().trim(), request.email().trim(),
+                        request.birthDate(), request.weightKg())
+        );
+        return userMapper.toResponse(user);
     }
 
-    public UserResponse delete(Long id){
-        UserResponse user = findById(id);
+    @Transactional
+    public UserResponse updateUser(UUID id, UpdateUserRequest request) {
+        UserEntity existing = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        existing.setUsername(request.username().trim());
+        existing.setEmail(request.email().trim());
+        existing.setBirthDate(request.birthDate());
+        existing.setWeightKg(request.weightKg());
+        return userMapper.toResponse(existing);
+    }
+
+    @Transactional
+    public UserResponse patchUser(UUID id, PatchUserRequest request) {
+        UserEntity existing = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        existing.setUsername(request.username() != null ? request.username().trim() : existing.getUsername());
+        existing.setEmail(request.email() != null ? request.email().trim() : existing.getEmail());
+        existing.setBirthDate(request.birthDate() != null ? request.birthDate() : existing.getBirthDate());
+        existing.setWeightKg(request.weightKg() != null ? request.weightKg() : existing.getWeightKg());
+        return userMapper.toResponse(existing);
+    }
+
+    @Transactional
+    @PreAuthorize("hasRole('OPERATOR')")
+    public UserResponse delete(UUID id) {
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        UserResponse userResponse = userMapper.toResponse(user);
         workoutService.deleteWorkoutsByUserId(id);
-        storage.users.remove(id);
-        return user;
+        userRepository.delete(user);
+        return userResponse;
     }
-
-
 
 }

@@ -17,6 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @Tag(name = "Users", description = "Управление пользователями")
 @RequestMapping(
         value = "/api/users",
@@ -30,7 +32,7 @@ public interface UserApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}")
     EntityModel<UserResponse> getUserById(@Parameter(description = "ID пользователя", required = true,
-            example = "1") @PathVariable Long id);
+            example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id);
 
 
     @Operation(
@@ -59,7 +61,7 @@ public interface UserApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     EntityModel<UserResponse> patchUser(
-            @Parameter(description = "ID пользователя", required = true, example = "1") @PathVariable Long id,
+            @Parameter(description = "ID пользователя", required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id,
             @Valid @RequestBody PatchUserRequest request
     );
 
@@ -79,7 +81,7 @@ public interface UserApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     EntityModel<UserResponse> updateUser(
-            @Parameter(description = "ID пользователя", required = true, example = "1") @PathVariable Long id,
+            @Parameter(description = "ID пользователя", required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id,
             @Valid @RequestBody UpdateUserRequest request
     );
 
@@ -94,7 +96,7 @@ public interface UserApi {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     EntityModel<UserResponse> deleteUser(
-            @Parameter(description = "ID пользователя", required = true, example = "1") @PathVariable Long id
+            @Parameter(description = "ID пользователя", required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id
     );
 
     @Operation(
@@ -111,7 +113,7 @@ public interface UserApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}/workouts")
     PagedModel<EntityModel<WorkoutResponse>> getWorkoutsByUser(
-            @Parameter(description = "ID пользователя", required = true, example = "1") @PathVariable Long id,
+            @Parameter(description = "ID пользователя", required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id,
             @Parameter(description = "Фильтр по типу тренировки", example = "RUNNING") @RequestParam(required = false) WorkoutType type,
             @Parameter(description = "Фильтр по преодоленной дистанции в км", example = "4.2") @RequestParam(required = false) Double totalDistanceKm,
             @Parameter(description = "Фильтр по соженным калориям", example = "250") @RequestParam(required = false) Integer totalCalories,

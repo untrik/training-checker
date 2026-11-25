@@ -2,6 +2,13 @@ spring:
   application:
     name: grpc-training-analytics-server
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8085/realms/training
+          audiences: training-analytics
+
 # HTTP-порт для Spring Boot (actuator, health)
 # Не конфликтует с demo-rest (8080), audit-service (8081), enrichment-client (8082)
 server:
@@ -14,9 +21,55 @@ grpc:
   server:
     port: 9090
 
-# Actuator — проверка здоровья сервиса
 management:
+  server:
+    port: ${MANAGEMENT_PORT:9083}
+    address: ${MANAGEMENT_ADDRESS:127.0.0.1}
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 100ms,300ms,500ms,1s,2s
+      minimum-expected-value:
+        http.server.requests: 1ms
+      maximum-expected-value:
+        http.server.requests: 3s
+  otlp:
+    metrics:
+      export:
+        enabled: false
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+        add-additional-paths: true
+  observations:
+    enable:
+      spring.security: false
+  tracing:
+    propagation:
+      type: w3c
+    sampling:
+      probability: ${TRACING_SAMPLING_PROBABILITY:1.0}
+  opentelemetry:
+    resource-attributes:
+      deployment.environment.name: local
+    tracing:
+      export:
+        otlp:
+          endpoint: ${OTEL_TRACES_ENDPOINT:http://localhost:4318/v1/traces}
+
+logging:
+  structured:
+    format:
+      file: ecs
+  file:
+    name: ${LOG_DIR:../runtime-logs}/analytics-service.log
+  include-application-name: false
+  pattern:
+    correlation: "[${spring.application.name:},trace_id=%X{traceId:-},span_id=%X{spanId:-},request_id=%X{requestId:-}] "

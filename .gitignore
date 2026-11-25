@@ -6,3 +6,8 @@
 /training-checker-events-contract/target/
 /training-checker-grpc-contract/target/
 /training-rest/target/
+# Local telemetry and generated demo state
+/runtime-logs/
+/.observability/
+/gateway-service/target/
+/training-checker-api-contract/target/

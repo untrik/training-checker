@@ -1,0 +1,38 @@
+groups:
+  - name: training-analytics
+    rules:
+      - record: training:analytics_requests:rate1m
+        expr: sum(rate(http_server_requests_seconds_count{job="training-rest",method="GET",uri="/api/workouts/{id}/analytics",status=~"2..|5.."}[1m]))
+      - record: training:analytics_errors:rate1m
+        expr: sum(rate(http_server_requests_seconds_count{job="training-rest",method="GET",uri="/api/workouts/{id}/analytics",status=~"5.."}[1m])) or (0 * training:analytics_requests:rate1m)
+      - record: training:analytics_error_ratio:rate1m
+        expr: training:analytics_errors:rate1m / training:analytics_requests:rate1m
+      - record: training:analytics_requests:increase1m
+        expr: sum(increase(http_server_requests_seconds_count{job="training-rest",method="GET",uri="/api/workouts/{id}/analytics",status=~"2..|5.."}[1m]))
+      - record: training:analytics_good_ratio:rate5m
+        expr: |
+          (sum(rate(http_server_requests_seconds_bucket{job="training-rest",method="GET",uri="/api/workouts/{id}/analytics",status="200",le="0.5"}[5m]))
+          or (0 * sum(rate(http_server_requests_seconds_count{job="training-rest",method="GET",uri="/api/workouts/{id}/analytics",status=~"2..|5.."}[5m]))))
+          / sum(rate(http_server_requests_seconds_count{job="training-rest",method="GET",uri="/api/workouts/{id}/analytics",status=~"2..|5.."}[5m]))
+      - alert: TrainingAnalyticsHighErrorRatio
+        expr: training:analytics_error_ratio:rate1m > 0.2 and training:analytics_requests:increase1m >= 10
+        for: 20s
+        labels:
+          job: training-rest
+          severity: warning
+          team: training
+        annotations:
+          summary: "Доля 5xx аналитики выше 20 процентов"
+          description: "Учебное правило: окно 1 минута, не менее 10 запросов, выдержка 20 секунд."
+          dashboard_url: "http://localhost:3000/d/training-golden-signals"
+          runbook_url: "http://localhost:3000/d/training-golden-signals?viewPanel=9"
+      - alert: TrainingScrapeTargetDown
+        expr: up{job=~"gateway-service|training-rest|grpc-training-analytics-server"} == 0
+        for: 30s
+        labels:
+          severity: warning
+          team: training
+        annotations:
+          summary: "Prometheus не получает метрики {{ $labels.job }}"
+          dashboard_url: "http://localhost:3000/d/training-golden-signals"
+          runbook_url: "http://localhost:3000/d/training-golden-signals?viewPanel=9"

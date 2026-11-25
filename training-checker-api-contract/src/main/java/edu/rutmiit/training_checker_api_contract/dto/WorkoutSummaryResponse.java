@@ -8,6 +8,8 @@ import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
+import java.util.UUID;
+
 
 @Getter
 @Builder
@@ -16,8 +18,8 @@ import org.springframework.hateoas.server.core.Relation;
 @Relation(collectionRelation = "workoutSummaries", itemRelation = "workoutSummary")
 @Schema(description = "Конечная статистика тренировки")
 public class WorkoutSummaryResponse extends RepresentationModel<WorkoutSummaryResponse> {
-    @Schema(description = "Уникальный идентификатор тренировки", example = "20")
-    private final Long workoutId;
+    @Schema(description = "Уникальный идентификатор тренировки", example = "550e8400-e29b-41d4-a716-446655440000")
+    private final UUID workoutId;
 
     @Schema(description = "Общая длительность тренировки в секундах", example = "3600")
     private final Long duration;

@@ -4,7 +4,108 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4afce561-1b3c-46ab-a5a8-ce2b63dc275d" name="Changes" comment="" />
+    <list default="true" id="4afce561-1b3c-46ab-a5a8-ce2b63dc275d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/edu/rutmiit/BffController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/edu/rutmiit/GatewayServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/edu/rutmiit/RequestIdWebFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/edu/rutmiit/RequestIds.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/edu/rutmiit/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/config/JwtRoleConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/config/RequestIdFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/config/RequestIds.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/controller/DiagnosticController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/controller/InternalAnalyticsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/service/AnalyticsAvailabilityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/java/edu/rutmiit/grpcanalytics/service/AnalyticsDiagnosticMode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/alertmanager/alertmanager.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/alloy/config.alloy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/grafana/dashboards/golden-signals.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/grafana/provisioning/dashboards/dashboards.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/grafana/provisioning/datasources/datasources.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/keycloak/training-realm.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/loki/loki.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/otel/otel-collector.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/prometheus/alerts.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/prometheus/prometheus.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/prometheus/rules-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/tempo/tempo.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/toxiproxy/proxies.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/client/AnalyticsClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/AnalyticsSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/HttpClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/JwtRoleConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/OAuthSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/RequestIdFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/RequestIds.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/config/SessionSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/CsrfController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/IdempotentWorkoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/OperatorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/WorkoutAnalyticsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/domain/CardioMetricEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/domain/UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/domain/WorkoutEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/domain/WorkoutSummaryEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/exception/ApiException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/mapper/CardioMetricMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/mapper/WorkoutMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/mapper/WorkoutSummaryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/repository/CardioMetricRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/repository/WorkoutRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/repository/WorkoutSummaryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/AnalyticsRetry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/HttpFailures.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/IdempotentWorkoutService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/RetryDelay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/TimeBudget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/WorkoutAnalyticsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/resources/db/migration/V1__create_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/resources/db/migration/V2__create_workout.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/resources/db/migration/V3__create_cardio_metric.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/resources/db/migration/V4__create_workout_summary.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-rest/src/main/resources/db/migration/V5__create_workout_idempotency.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc-training-analytics-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/grpc-training-analytics-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/grpc-training-analytics-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grpc-training-enrichment-client/src/main/java/edu/rutmiit/grpcenrichment/listener/WorkoutFinishedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/grpc-training-enrichment-client/src/main/java/edu/rutmiit/grpcenrichment/listener/WorkoutFinishedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/CardioMetricResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/CardioMetricResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/WorkoutResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/WorkoutResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/WorkoutSummaryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/dto/WorkoutSummaryResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/endpoints/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/endpoints/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/endpoints/WorkoutApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/java/edu/rutmiit/training_checker_api_contract/endpoints/WorkoutApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-api-contract/src/main/resources/graphql/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-api-contract/src/main/resources/graphql/schema.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-events-contract/src/main/java/edu/rutmiit/training_events/MetricEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-events-contract/src/main/java/edu/rutmiit/training_events/MetricEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-events-contract/src/main/java/edu/rutmiit/training_events/WorkoutEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-events-contract/src/main/java/edu/rutmiit/training_events/WorkoutEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-checker-grpc-contract/src/main/proto/training_analytics.proto" beforeDir="false" afterPath="$PROJECT_DIR$/training-checker-grpc-contract/src/main/proto/training_analytics.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/TrainingRestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/TrainingRestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/WorkoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/controllers/WorkoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/event/WorkoutEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/event/WorkoutEventPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/exception/GraphQLExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/exception/GraphQLExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/MetricsDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/MetricsDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/SummaryDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/SummaryDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/UserDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/UserDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/WorkoutDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/graphql/fetcher/WorkoutDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/MetricService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/MetricService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/WorkoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/service/WorkoutService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-rest/src/main/java/edu/rutmiit/training_rest/storage/InMemoryStorage.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +117,9 @@
         <option value="AnnotationType" />
         <option value="Exception" />
         <option value="Record" />
+        <option value="Enum" />
         <option value="Interface" />
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
@@ -24,6 +127,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springdoc/springdoc-openapi-starter-webmvc-api/3.0.2/springdoc-openapi-starter-webmvc-api-3.0.2-sources.jar!/org/springdoc/webmvc/api/MultipleOpenApiWebMvcResource.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -32,29 +142,101 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.TrainingRestApplication.executor": "Run",
-    "Maven.training-checker-root [compile].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/training-checker",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TrainingRestApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.training-checker-root [compile].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/PKP/training-checker&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;E:/PKP/training-checker/gateway-service/src/main/java/edu/rutmiit/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.com.intellij.openapi.options.colors.pages.GeneralColorsPage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\training-checker\training-rest\.mvn" />
       <recent name="E:\training-checker\training-rest" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PKP\training-checker\training-rest\src\main\resources\db" />
       <recent name="E:\training-checker\notification-service\src\main\resources\static" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.AuditServiceApplication">
+    <configuration name="AuditServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="audit-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.rutmiit.audit_service.AuditServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.rutmiit.GatewayServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GrpcAnalyticsServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="grpc-training-analytics-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.rutmiit.grpcanalytics.GrpcAnalyticsServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GrpcEnrichmentClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="grpc-training-enrichment-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.rutmiit.grpcenrichment.GrpcEnrichmentClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.rutmiit.notificationservice.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingRestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="training-rest" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.rutmiit.training_rest.TrainingRestApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,8 +245,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1774900776353</updated>
+      <workItem from="1789504809952" duration="12739000" />
+      <workItem from="1790112455386" duration="36680000" />
+      <workItem from="1790613961437" duration="7119000" />
+      <workItem from="1790626290191" duration="2456000" />
+      <workItem from="1790797740303" duration="6380000" />
+      <workItem from="1790970270561" duration="1061000" />
+      <workItem from="1790979467069" duration="1949000" />
+      <workItem from="1791183846510" duration="8000" />
+      <workItem from="1792879131607" duration="23164000" />
+      <workItem from="1793465740458" duration="5854000" />
+      <workItem from="1794922781394" duration="21958000" />
+      <workItem from="1795188498682" duration="4720000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -76,5 +273,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gateway-service/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

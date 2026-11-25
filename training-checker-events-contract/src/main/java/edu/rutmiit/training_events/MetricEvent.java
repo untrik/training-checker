@@ -1,11 +1,12 @@
 package edu.rutmiit.training_events;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 public sealed interface MetricEvent {
     record Created(
-            Long id,
-            Long workoutId,
+            UUID id,
+            UUID workoutId,
             OffsetDateTime timestamp,
             Integer heartRate,
             Double distanceKm,

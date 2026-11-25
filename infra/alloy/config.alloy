@@ -1,0 +1,17 @@
+local.file_match "training_logs" {
+  path_targets = [
+    {"__path__" = "/var/log/training/gateway-service.log", "job" = "training-apps", "service" = "gateway-service"},
+    {"__path__" = "/var/log/training/training-service.log", "job" = "training-apps", "service" = "training-rest"},
+    {"__path__" = "/var/log/training/analytics-service.log", "job" = "training-apps", "service" = "grpc-training-analytics-server"},
+  ]
+  sync_period = "5s"
+}
+loki.source.file "training_logs" {
+  targets = local.file_match.training_logs.targets
+  forward_to = [loki.write.local.receiver]
+}
+loki.write "local" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}

@@ -11,6 +11,7 @@ import org.springframework.hateoas.server.core.Relation;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Builder
@@ -19,8 +20,8 @@ import java.util.List;
 @Relation(collectionRelation = "workouts", itemRelation = "workout")
 @Schema(description = "Информация о тренировке")
 public class WorkoutResponse extends RepresentationModel<WorkoutResponse> {
-    @Schema(description = "Уникальный идентификатор тренировки", example = "1")
-    private final Long id;
+    @Schema(description = "Уникальный идентификатор тренировки", example = "550e8400-e29b-41d4-a716-446655440000")
+    private final UUID id;
 
     @Schema(description = "Информация о пользователе")
     private final UserResponse user;

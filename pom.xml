@@ -8,8 +8,14 @@
         # Собрать всё в правильном порядке
         .\mvnw install
 
-        # Запустить training-rest - контракт соберётся автоматически
-        .\mvnw spring-boot:run -pl training-rest -am
+        # Запустить training-rest для BFF / JWT после сборки
+        .\mvnw.cmd spring-boot:run -pl training-rest
+
+        # Запустить gateway-service в отдельном терминале после готовности Keycloak
+        .\mvnw.cmd spring-boot:run -pl gateway-service
+
+        # Старый режим сессионного входа (отдельно от сценария BFF)
+        .\mvnw.cmd spring-boot:run -pl training-rest "-Dspring-boot.run.profiles=session-auth"
 
         # Собрать только контракт (если менял только его)
         .\mvnw install -pl training-checker-api-contract
@@ -44,6 +50,7 @@
         <module>grpc-training-analytics-server</module>
         <module>grpc-training-enrichment-client</module>
         <module>notification-service</module>
+        <module>gateway-service</module>
     </modules>
 
 

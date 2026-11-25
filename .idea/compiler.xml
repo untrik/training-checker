@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="training-checker-grpc-contract" />
-        <module name="training-rest" />
         <module name="audit-service" />
+        <module name="gateway-service" />
         <module name="training-checker-events-contract" />
         <module name="grpc-training-enrichment-client" />
         <module name="notification-service" />
@@ -22,12 +22,14 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="training-checker-api-contract" />
+        <module name="training-rest" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="audit-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
       <module name="grpc-training-analytics-server" options="-parameters" />
       <module name="grpc-training-enrichment-client" options="-parameters" />
       <module name="notification-service" options="-parameters" />

@@ -11,6 +11,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.WatchEvent;
+import java.util.UUID;
 
 @Component
 public class WorkoutEventPublisher {
@@ -52,7 +53,7 @@ public class WorkoutEventPublisher {
         send(RoutingKeys.WORKOUT_FINISHED, event);
     }
 
-    public void publishDeleted(Long userId, Long workoutId, String title, int deletedMetricsCount) {
+    public void publishDeleted(UUID userId, UUID workoutId, String title, int deletedMetricsCount) {
         var event = new WorkoutEvent.Deleted(
                 userId,
                 workoutId,

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Платформа для управления тренировками – веб-клиент</title>
+    <style>body{max-width:900px;margin:2rem auto;padding:0 1rem;font-family:system-ui}button{padding:.6rem;margin:.3rem}pre{padding:1rem;background:#17212d;color:white}</style>
+</head>
+<body>
+<h1>Платформа для управления тренировками</h1>
+<p>Вход выполняется через Keycloak. Браузер передаёт gateway cookie SESSION; токен для сервиса тренировок остаётся на сервере.</p>
+<a href="/oauth2/authorization/keycloak">Войти через Keycloak</a>
+<button data-url="/bff/me">Текущий пользователь</button>
+<p><label>UUID пользователя: <input id="userId" type="text" placeholder="Введите UUID пользователя"></label></p>
+<button data-url="/api/users/{userId}">Пользователь</button>
+<button data-url="/api/users/{userId}/workouts">Тренировки пользователя</button>
+<p><label>UUID тренировки: <input id="workoutId" type="text" placeholder="Введите UUID тренировки"></label></p>
+<button data-url="/api/workouts/{workoutId}">Тренировка</button>
+<button data-url="/api/workouts/{workoutId}/metrics">Метрики</button>
+<button data-url="/api/workouts/{workoutId}/summary">Статистика</button>
+<pre id="output">После входа укажите UUID и нажмите кнопку.</pre>
+<script>
+    const output = document.getElementById('output');
+    document.querySelectorAll('button[data-url]').forEach(button => button.addEventListener('click', async () => {
+        let url = button.dataset.url;
+        for (const id of ['userId', 'workoutId']) {
+            if (url.includes('{' + id + '}')) {
+                const value = document.getElementById(id).value.trim();
+                if (!value) {
+                    output.textContent = id === 'userId' ? 'Укажите UUID пользователя.' : 'Укажите UUID тренировки.';
+                    return;
+                }
+                url = url.replace('{' + id + '}', encodeURIComponent(value));
+            }
+        }
+        try {
+            const response = await fetch(url, {credentials:'same-origin'});
+            output.textContent = response.status + '\n' + await response.text();
+        } catch (error) {
+            output.textContent = 'Ошибка запроса: ' + error.message;
+        }
+    }));
+</script>
+</body>
+</html>

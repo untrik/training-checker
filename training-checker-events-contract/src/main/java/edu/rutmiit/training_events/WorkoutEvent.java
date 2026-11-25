@@ -2,21 +2,22 @@ package edu.rutmiit.training_events;
 
 import java.nio.file.WatchEvent;
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 
 public sealed interface WorkoutEvent {
     record Started(
             String title,
-            Long userId,
-            Long workoutId,
+            UUID userId,
+            UUID workoutId,
             OffsetDateTime startedAt
     ) implements WorkoutEvent {
     }
 
     record Finished(
             String title,
-            Long userId,
-            Long workoutId,
+            UUID userId,
+            UUID workoutId,
             OffsetDateTime finishedAt,
             int MetricsCount,
             Long duration,
@@ -30,16 +31,16 @@ public sealed interface WorkoutEvent {
     }
 
     record Deleted(
-            Long userId,
-            Long workoutId,
+            UUID userId,
+            UUID workoutId,
             String title,
             int deletedMetricsCount
     ) implements WorkoutEvent {
 
     }
     record Enriched(
-            Long workoutId,
-            Long userId,
+            UUID workoutId,
+            UUID userId,
             String intensityLevel,
             Double efficiencyScore,
             String heartRateZone,

@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Tag(name = "Workouts", description = "Управление тренировками")
 @RequestMapping(
@@ -35,7 +36,7 @@ public interface WorkoutApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}")
     EntityModel<WorkoutResponse> getWorkoutById(@Parameter(description = "ID тренировки",
-            required = true, example = "1") @PathVariable Long id);
+            required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id);
 
 
     @Operation(
@@ -50,7 +51,7 @@ public interface WorkoutApi {
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<EntityModel<WorkoutResponse>> createWorkout(@Parameter(description = "ID пользователя",
-            required = true, example = "1") @PathVariable Long id, @Valid @RequestBody WorkoutRequest request);
+            required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id, @Valid @RequestBody WorkoutRequest request);
 
     @Operation(
             summary = "Создать метрику",
@@ -63,7 +64,7 @@ public interface WorkoutApi {
     @PostMapping("/{workoutId}/metric")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<CardioMetricResponse>  createMetric(@Parameter(description = "ID тренировки",
-            required = true, example = "1") @PathVariable Long workoutId, @Valid @RequestBody CardioMetricRequest request);
+            required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID workoutId, @Valid @RequestBody CardioMetricRequest request);
 
     @Operation(
             summary = "Закончить тренировку",
@@ -76,7 +77,7 @@ public interface WorkoutApi {
     @PostMapping("/{id}/finish")
     EntityModel<WorkoutResponse> finishWorkout(
             @Parameter(description = "ID тренировки",
-                    required = true, example = "1") @PathVariable Long id
+                    required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id
 //            @Valid @RequestBody FinishWorkoutRequest request
     );
 
@@ -89,7 +90,7 @@ public interface WorkoutApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}/metrics")
     List<CardioMetricResponse> getMetricsByWorkoutId(@Parameter(description = "ID тренировки",
-            required = true, example = "1") @PathVariable Long id);
+            required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id);
 
     @Operation(
             summary = "Получить конечную статистику по ID тренировки",
@@ -100,7 +101,7 @@ public interface WorkoutApi {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}/summary")
     WorkoutSummaryResponse getSummaryByWorkoutId(@Parameter(description = "ID тренировки",
-            required = true, example = "1") @PathVariable Long id);
+            required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id);
 
 //    @Operation(
 //            summary = "Создать метрики тренировки",
@@ -125,6 +126,6 @@ public interface WorkoutApi {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     EntityModel<WorkoutResponse> deleteWorkout(
-            @Parameter(description = "ID тренировки", required = true, example = "1") @PathVariable Long id
+            @Parameter(description = "ID тренировки", required = true, example = "550e8400-e29b-41d4-a716-446655440000") @PathVariable UUID id
     );
 }

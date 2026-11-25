@@ -12,6 +12,7 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Builder
@@ -20,8 +21,8 @@ import java.time.LocalDate;
 @Relation(collectionRelation = "users", itemRelation = "user")
 @Schema(description = "Информация о пользователе")
 public class UserResponse extends RepresentationModel<UserResponse> {
-    @Schema(description = "Уникальный идентификатор пользователя", example = "20")
-    private final Long id;
+    @Schema(description = "Уникальный идентификатор пользователя", example = "550e8400-e29b-41d4-a716-446655440000")
+    private final UUID id;
 
     @Schema(description = "Имя пользователя", example = "untrick")
     private final  String username;

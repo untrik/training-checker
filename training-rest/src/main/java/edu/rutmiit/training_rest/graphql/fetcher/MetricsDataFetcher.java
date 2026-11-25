@@ -13,6 +13,7 @@ import edu.rutmiit.training_rest.graphql.types.CreateUserInputGql;
 import edu.rutmiit.training_rest.service.MetricService;
 
 import java.util.List;
+import java.util.UUID;
 
 @DgsComponent
 public class MetricsDataFetcher {
@@ -24,7 +25,7 @@ public class MetricsDataFetcher {
 
     @DgsQuery
     public List<CardioMetricResponse> metrics(@InputArgument String workoutId) {
-        return metricService.getAllMetricsByWorkoutId(Long.parseLong(workoutId));
+        return metricService.getAllMetricsByWorkoutId(UUID.fromString(workoutId));
     }
 
     @DgsMutation
@@ -36,6 +37,6 @@ public class MetricsDataFetcher {
                 input.calories(),
                 input.pace()
         );
-        return metricService.createMetric(Long.parseLong(workoutId), request);
+        return metricService.createMetric(UUID.fromString(workoutId), request);
     }
 }

@@ -18,7 +18,7 @@ type User {
 
 type Metric{
     id: ID!
-    workoutId: Int!
+    workoutId: ID!
     timestamp: DateTime!
     heartRate: Int!
     distanceKm: Float!
@@ -27,7 +27,7 @@ type Metric{
 }
 
 type Summary{
-    workoutId: Int!
+    workoutId: ID!
     duration: Int!
     totalDistanceKm: Float!
     avgHeartRate: Int!

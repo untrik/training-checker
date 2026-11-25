@@ -13,8 +13,11 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
 
 @RestController
 public class UserController implements UserApi {
@@ -38,7 +41,7 @@ public class UserController implements UserApi {
 
 
     @Override
-    public EntityModel<UserResponse> getUserById(Long id) {
+    public EntityModel<UserResponse> getUserById(UUID id) {
         return userModelAssembler.toModel(userService.findById(id));
     }
 
@@ -52,24 +55,24 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public EntityModel<UserResponse> patchUser(Long id, PatchUserRequest request) {
+    public EntityModel<UserResponse> patchUser(UUID id, PatchUserRequest request) {
         return userModelAssembler.toModel(userService.patchUser(id, request));
     }
 
     @Override
-    public EntityModel<UserResponse> updateUser(Long id, UpdateUserRequest request) {
+    public EntityModel<UserResponse> updateUser(UUID id, UpdateUserRequest request) {
         return userModelAssembler.toModel(userService.updateUser(id,request));
     }
 
     @Override
-    public EntityModel<UserResponse> deleteUser(Long id) {
+    public EntityModel<UserResponse> deleteUser(UUID id) {
         UserResponse response = userService.findById(id);
         userService.delete(id);
         return userModelAssembler.toModel(response);
     }
 
     @Override
-    public PagedModel<EntityModel<WorkoutResponse>> getWorkoutsByUser(Long id,WorkoutType type,Double totalDistanceKm,Integer totalCalories,String titleSearch, int page, int size) {
+    public PagedModel<EntityModel<WorkoutResponse>> getWorkoutsByUser(UUID id,WorkoutType type,Double totalDistanceKm,Integer totalCalories,String titleSearch, int page, int size) {
         userService.findById(id);
         PagedResponse<WorkoutResponse> paged = workoutService.getWorkoutsByUser(id,type,totalDistanceKm,totalCalories,titleSearch, page, size);
         Page<WorkoutResponse> springPage = new PageImpl<>(

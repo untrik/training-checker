@@ -15,6 +15,7 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
 import java.nio.file.WatchEvent;
+import java.util.UUID;
 
 @Component
 public class WorkoutFinishedListener {
@@ -53,8 +54,8 @@ public class WorkoutFinishedListener {
                     workoutFinished.workoutId(), workoutFinished.title(), metadata.eventId());
             // 2. Формируем gRPC-запрос
             AnalyzeWorkoutRequest grpcRequest = AnalyzeWorkoutRequest.newBuilder()
-                    .setWorkoutId(workoutFinished.workoutId())
-                    .setUserId(workoutFinished.userId())
+                    .setWorkoutId(workoutFinished.workoutId().toString())
+                    .setUserId(workoutFinished.userId().toString())
                     .setDuration(workoutFinished.duration())
                     .setAvgHeartRate(workoutFinished.avgHeartRate())
                     .setMaxHeartRate(workoutFinished.maxHeartRate())
@@ -68,8 +69,8 @@ public class WorkoutFinishedListener {
             WorkoutAnalysisResponse grpcResponse = analyticsStub.analyzeWorkout(grpcRequest);
 
             log.info("gRPC ответ получен: workoutId={}, userId={}, уровень нагрузки={}, эффективность={}, пульсовая зона={}, рекомендация={}",
-                    grpcResponse.getWorkoutId(),
-                    grpcResponse.getUserId(),
+                    UUID.fromString(grpcResponse.getWorkoutId()),
+                    UUID.fromString(grpcResponse.getUserId()),
                     grpcResponse.getIntensityLevel(),
                     grpcResponse.getEfficiencyScore(),
                     grpcResponse.getHeartRateZone(),
@@ -77,8 +78,8 @@ public class WorkoutFinishedListener {
 
             // 4. Публикуем событие workout.enriched
             WorkoutEvent.Enriched enrichedEvent = new WorkoutEvent.Enriched(
-                    grpcResponse.getWorkoutId(),
-                    grpcResponse.getUserId(),
+                    UUID.fromString(grpcResponse.getWorkoutId()),
+                    UUID.fromString(grpcResponse.getUserId()),
                     grpcResponse.getIntensityLevel(),
                     grpcResponse.getEfficiencyScore(),
                     grpcResponse.getHeartRateZone(),

@@ -1,4 +1,3 @@
-
 syntax = "proto3";
 
 // Java-пакет для сгенерированных классов
@@ -14,8 +13,8 @@ package workoutanalytics;
 // Unary RPC - один запрос это один ответ (типа аналог REST GET/POST)
 service WorkoutAnalytics {
 
-    // Анализирует summary и возвращает вычисленные метрики
-    rpc AnalyzeWorkout (AnalyzeWorkoutRequest) returns (WorkoutAnalysisResponse);
+  // Анализирует summary и возвращает вычисленные метрики
+  rpc AnalyzeWorkout (AnalyzeWorkoutRequest) returns (WorkoutAnalysisResponse);
 }
 // Сообщения
 // В proto3 все поля опциональны по умолчанию (zero-value = не задано).
@@ -25,8 +24,8 @@ service WorkoutAnalytics {
 
 // Запрос на анализ тренировки — данные, необходимые для вычисления метрик.
 message AnalyzeWorkoutRequest {
-  int64 workout_id = 1;
-  int64 user_id = 2;
+  string  workout_id = 1;
+  string  user_id = 2;
   int64 duration = 3;
   double total_distance_km = 4;
   int32 avg_heart_rate = 5;
@@ -36,8 +35,8 @@ message AnalyzeWorkoutRequest {
 }
 // Ответ с результатами анализа — вычисленные метрики тренировки.
 message WorkoutAnalysisResponse {
-  int64 workout_id = 1;
-  int64 user_id = 2;
+  string  workout_id = 1;
+  string  user_id = 2;
   string intensity_level = 3; // уровень нагрузки
   double efficiency_score = 4; // оценка эффективности от 0 до 100
   string heart_rate_zone = 5; // пульсовая зона

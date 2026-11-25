@@ -10,6 +10,7 @@ import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Getter
 @Builder
@@ -19,11 +20,11 @@ import java.time.OffsetDateTime;
 @Schema(description = "Информация о метрике")
 public class CardioMetricResponse extends RepresentationModel<CardioMetricResponse> {
 
-    @Schema(description = "Уникальный идентификатор метрики", example = "1")
-    private final Long id;
+    @Schema(description = "Уникальный идентификатор метрики", example = "550e8400-e29b-41d4-a716-446655440000")
+    private final UUID id;
 
     @Schema(description = "Уникальный идентификатор тренировки")
-    private final Long workoutId;
+    private final UUID workoutId;
 
     @Schema(description = "Время измерения", example = "2007-12-03T10:15:30")
     private final OffsetDateTime timestamp;
